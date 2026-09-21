@@ -1,0 +1,30 @@
+KP184control Software License
+
+Copyright © 2026 KP184control. All rights reserved.
+
+This software is proprietary software.
+
+Permission is granted to use this software for personal use only,
+unless separate written permission has been granted by the copyright holder.
+
+Without prior written permission, you may not:
+
+- sell, rent, sublicense, or commercially distribute this software;
+- redistribute this software as your own product;
+- remove or alter copyright, authorship, or ownership notices;
+- claim authorship or ownership of this software;
+- distribute modified versions of this software;
+- distribute or publish the source code;
+- use this software or substantial parts of it in another commercial product.
+
+Reverse engineering, decompilation, or modification is not permitted,
+except where such activity is expressly permitted by applicable mandatory law.
+
+All intellectual property rights remain with the copyright holder.
+
+The software is provided "as is", without warranty of any kind.
+The copyright holder shall not be liable for damage resulting from the use
+or inability to use this software.
+
+KP184control
+2026
