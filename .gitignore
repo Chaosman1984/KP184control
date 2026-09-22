@@ -1,0 +1,18 @@
+# Keep source/private development files out of this public repository
+*.cs
+*.csproj
+*.sln
+*.slnx
+.vs/
+bin/
+obj/
+*.pdb
+Mapping.txt
+*.pfx
+*.p12
+*.key
+*.pem
+
+# Release assets are uploaded through GitHub Releases, not committed to git
+*.zip
+*-SHA256.txt
