@@ -1,114 +1,63 @@
-# KP184control v2.0.0
+# KP184control
 
-KP184control is Windows software for controlling and analysing battery discharge tests with the **KUNKIN KP184** electronic load.
+KP184control is a Windows desktop application for controlling and logging battery discharge tests with the **KUNKIN KP184 electronic load**.
 
-> Current release: **v2.0.0**
+> **Current release:** v2.1.0  
+> **Source code:** proprietary / not publicly distributed.  
+> **Copyright:** © 2026 Richard Uilenberg. All rights reserved.
 
----
+![KP184control interface](docs/kp184control-v2.1.png)
 
-## Nederlands
+## Features in v2.1.0
 
-### Functies
+- Constant Current (**CC**) testing.
+- CC soft-start enabled by default to reduce abrupt load application.
+- Constant Power (**CP/CW**) testing.
+- Constant Resistance (**CR**) testing.
+- Live voltage, current and power display.
+- Capacity (Ah) and energy (Wh) measurement.
+- CSV test logging.
+- Discharge-curve graphing and battery-capacity estimation.
+- Automatic KP184 connection/profile detection used by the application.
+- Dutch, English and German UI support.
 
-- Verbinding met de KUNKIN KP184 via seriële poort
-- Instellen van ontlaadstroom en cutoff-spanning
-- Automatische cutoff
-- Live weergave van spanning, stroom en vermogen
-- Meting van capaciteit en energie
-- Grafieken voor spanning, stroom, capaciteit en energie
-- Overzicht met alle grafieken
-- Vergelijking met fabriekscapaciteit
-- Geschatte resterende accucapaciteit
-- CSV-logbestand
-- Interface in Nederlands, Engels en Duits
+### CV status
 
-### Systeemvereisten
+Constant Voltage (**CV**) is intentionally **not enabled in v2.1.0**. Experimental current-limited CV control was not considered sufficiently stable for release.
 
-- Windows 10 of Windows 11
-- .NET 10 Desktop Runtime
-- KUNKIN KP184
-- USB-/seriële verbinding
+## Download
 
-### Waarschuwing
+Download KP184control from the **Releases** section of this GitHub repository. For each release, download:
 
-Het ontladen van accu's kan risico's met zich meebrengen. Controleer altijd het accutype, de spanning, de cutoff-spanning en de ontlaadstroom.
+- `KP184control-v2.1.0-windows.zip`
+- `KP184control-v2.1.0-windows-SHA256.txt`
 
-Wanneer automatische cutoff wordt uitgeschakeld, stopt KP184control niet automatisch bij de ingestelde cutoff-spanning.
+Compare the SHA-256 checksum if you want to verify that the ZIP has not changed after release.
 
-Laat een accutest niet onbeheerd uitvoeren.
+### Requirement
 
----
+The v2.1.0 package requires **Windows x64** and the **Microsoft .NET 10 Desktop Runtime**.
 
-## English
+## Basic use
 
-### Features
+1. Connect the KP184 to the PC and battery/test setup.
+2. Start KP184control and connect to the detected KP184.
+3. Enter the battery chemistry/capacity/full-charge information.
+4. Select CC, CP or CR.
+5. Choose conservative load settings and a safe cutoff voltage.
+6. Start the test and supervise the hardware.
+7. Use STOP immediately if the battery, BMS, wiring, connectors or load behave unexpectedly.
 
-- Serial connection to the KUNKIN KP184
-- Adjustable discharge current and cutoff voltage
-- Automatic cutoff
-- Live voltage, current and power readings
-- Capacity and energy measurement
-- Voltage, current, capacity and energy graphs
-- Combined graph overview
-- Comparison with factory-rated capacity
-- Estimated remaining battery capacity
-- CSV logging
-- Dutch, English and German interface
+## Safety
 
-### System requirements
+Electronic-load and battery testing can involve high current, heat, arcing, damaged cells, BMS protection events and fire risk. KP184control does not replace proper electrical protection or supervision.
 
-- Windows 10 or Windows 11
-- .NET 10 Desktop Runtime
-- KUNKIN KP184
-- USB/serial connection
+Use correctly rated wiring, connectors and fusing; verify polarity before enabling the load; stay within the limits of both the battery and the KP184; and do not leave a test unattended.
 
-### Warning
+## Source code and license
 
-Discharging batteries can involve risks. Always verify the battery type, voltage, cutoff voltage and discharge current.
+KP184control is **not open-source software**. The public repository intentionally does not contain the C# source code. The software may be used under the terms in [LICENSE.txt](LICENSE.txt). Redistribution, resale, modified redistribution and claiming the software as your own are not permitted without written permission.
 
-When automatic cutoff is disabled, KP184control will not automatically stop at the configured cutoff voltage.
+## Bugs and security issues
 
-Do not leave a battery discharge test unattended.
-
----
-
-## Deutsch
-
-### Funktionen
-
-- Serielle Verbindung mit der KUNKIN KP184
-- Einstellbarer Entladestrom und Abschaltspannung
-- Automatische Abschaltung
-- Live-Anzeige von Spannung, Strom und Leistung
-- Messung von Kapazität und Energie
-- Diagramme für Spannung, Strom, Kapazität und Energie
-- Übersicht aller Diagramme
-- Vergleich mit der Nennkapazität
-- Geschätzte verbleibende Akkukapazität
-- CSV-Protokollierung
-- Benutzeroberfläche auf Niederländisch, Englisch und Deutsch
-
-### Systemanforderungen
-
-- Windows 10 oder Windows 11
-- .NET 10 Desktop Runtime
-- KUNKIN KP184
-- USB-/Seriell-Verbindung
-
-### Warnung
-
-Das Entladen von Akkus kann Risiken mit sich bringen. Überprüfen Sie immer Akkutyp, Spannung, Abschaltspannung und Entladestrom.
-
-Wenn die automatische Abschaltung deaktiviert ist, beendet KP184control den Test nicht automatisch bei der eingestellten Abschaltspannung.
-
-Lassen Sie einen Akku-Entladetest nicht unbeaufsichtigt.
-
----
-
-## License
-
-KP184control is proprietary software.
-
-© 2026 KP184control. All rights reserved.
-
-See [LICENSE.txt](LICENSE.txt) for the license terms.
+For normal bugs, use GitHub Issues. For a security issue that should not be public, use GitHub's **Security → Report a vulnerability** / private vulnerability reporting feature when available. See [SECURITY.md](SECURITY.md).
