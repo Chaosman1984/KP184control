@@ -18,6 +18,12 @@ KP184control is a Windows desktop application for controlling and logging batter
 - [English user manual](USER_MANUAL_EN.md)
 - [Deutsches Benutzerhandbuch](BENUTZERHANDBUCH_DE.md)
 
+## Device compatibility
+
+**KP184control v2.1.0 is currently validated for the KUNKIN KP184 with model ID `0x0730`.** Other KUNKIN revisions or models may use related communication, but they have not been hardware-validated and are **not officially supported** in this release.
+
+Unknown device profiles may be detected/read where communication is possible, but KP184control will not enable the load unless the write profile has been confirmed as safe.
+
 ## Features in v2.1.0
 
 - Constant Current (**CC**) testing.
