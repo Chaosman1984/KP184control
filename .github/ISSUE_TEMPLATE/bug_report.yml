@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a reproducible KP184control problem
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: KP184control version
+      placeholder: "2.1.0"
+    validations:
+      required: true
+  - type: input
+    id: kp184
+    attributes:
+      label: KP184 model / profile
+      placeholder: "KP184, model ID 0x0730 if known"
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Load mode
+      options:
+        - CC
+        - CP/CW
+        - CR
+        - Connection / detection
+        - Logging / graph
+        - Other
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include setpoints and measured values where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
