@@ -3,11 +3,15 @@
 KP184control is a Windows desktop application for controlling and logging battery discharge tests with the **KUNKIN KP184 electronic load**.
 
 > **Current release:** v2.1.0  
+> **Interface languages:** English • Deutsch • Nederlands  
+> **Screenshot below:** Dutch interface; the language can be changed in the application.  
 > **Source code:** proprietary / not publicly distributed.  
 > **Copyright:** © 2026 Richard Uilenberg. All rights reserved.
+
 ## Screenshot
 
 ![KP184control v2.1](kp184control-v2.1.png.png)
+
 ## Documentation
 
 - [Nederlandse handleiding](HANDLEIDING_NL.md)
