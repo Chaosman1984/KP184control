@@ -1,30 +1,31 @@
 KP184control Software License
 
-Copyright © 2026 KP184control. All rights reserved.
+Copyright © 2026 Richard Uilenberg. All rights reserved.
 
-This software is proprietary software.
+KP184control is proprietary software. The source code is not open source.
 
-Permission is granted to use this software for personal use only,
-unless separate written permission has been granted by the copyright holder.
+Richard Uilenberg is the copyright holder of KP184control v2.1.0.
 
-Without prior written permission, you may not:
+PERMITTED USE
+You may download, install, and use an unmodified copy of KP184control for personal use and internal use within your own organization, free of charge, unless a separate written agreement states otherwise. You may make reasonable backup copies for your own use.
 
-- sell, rent, sublicense, or commercially distribute this software;
-- redistribute this software as your own product;
-- remove or alter copyright, authorship, or ownership notices;
-- claim authorship or ownership of this software;
-- distribute modified versions of this software;
-- distribute or publish the source code;
-- use this software or substantial parts of it in another commercial product.
+WITHOUT PRIOR WRITTEN PERMISSION, YOU MAY NOT:
+- sell, rent, sublicense, or commercially redistribute the software;
+- redistribute the software as your own product or bundle it with another product;
+- remove, hide, or alter copyright, authorship, ownership, or license notices;
+- claim authorship or ownership of KP184control or substantial parts of it;
+- distribute modified versions of KP184control;
+- publish, distribute, or disclose the source code;
+- copy substantial parts of the software into another product;
+- bypass licensing, integrity, or technical protection measures, if present.
 
-Reverse engineering, decompilation, or modification is not permitted,
-except where such activity is expressly permitted by applicable mandatory law.
+Reverse engineering, decompilation, or modification is not permitted except to the extent that such activity cannot lawfully be restricted under applicable mandatory law.
 
-All intellectual property rights remain with the copyright holder.
+All intellectual-property rights remain with the copyright holder. No trademark rights or ownership rights are transferred by this license.
 
-The software is provided "as is", without warranty of any kind.
-The copyright holder shall not be liable for damage resulting from the use
-or inability to use this software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. BATTERY TESTING AND USE OF ELECTRONIC LOADS CAN INVOLVE HIGH CURRENT, HEAT, AND ELECTRICAL HAZARDS. THE USER IS RESPONSIBLE FOR SAFE WIRING, CORRECT SETTINGS, APPROPRIATE PROTECTION, AND SUPERVISION.
+
+To the maximum extent permitted by law, the copyright holder is not liable for damage, data loss, equipment damage, battery damage, injury, or other loss arising from use or inability to use the software.
 
 KP184control
-2026
+Version 2.1.0 — 2026
