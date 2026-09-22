@@ -177,6 +177,14 @@ Für dieses bestätigte Profil verwendet die Software folgende Gerätegrenzen:
 
 Wenn ein Gerät zwar gelesen werden kann, das Schreibprofil jedoch nicht bestätigt ist, startet KP184control aus Sicherheitsgründen keinen Lasttest.
 
+### Unterstützte Modelle und Revisionen
+
+**KP184control v2.1.0 ist derzeit hardwareseitig für den KUNKIN KP184 mit der Modell-ID `0x0730` validiert.**
+
+Andere KUNKIN-Modelle oder Revisionen können möglicherweise eine ähnliche Kommunikation verwenden, wurden in dieser Version jedoch nicht hardwareseitig validiert und werden daher **nicht offiziell unterstützt**.
+
+Ein unbekanntes Geräteprofil kann nach Möglichkeit erkannt oder ausgelesen werden, aber KP184control aktiviert die Last erst, wenn das Schreibprofil als sicher bestätigt wurde.
+
 ---
 
 ## 7. Live-Messung
