@@ -177,6 +177,14 @@ Voor dit bevestigde profiel gebruikt de software de volgende apparaatlimieten:
 
 Als een apparaat wel kan worden uitgelezen maar het schrijfprofiel niet bevestigd is, start KP184control uit veiligheid geen belastingstest.
 
+### Ondersteunde modellen en revisies
+
+**KP184control v2.1.0 is momenteel hardwarematig gevalideerd voor de KUNKIN KP184 met model-ID `0x0730`.**
+
+Andere KUNKIN-modellen of revisies kunnen mogelijk vergelijkbare communicatie gebruiken, maar zijn in deze release niet hardwarematig gevalideerd en daarom **niet officieel ondersteund**.
+
+Een onbekend apparaatprofiel kan waar mogelijk worden gedetecteerd of uitgelezen, maar KP184control schakelt de belasting niet in zolang het schrijfprofiel niet als veilig is bevestigd.
+
 ---
 
 ## 7. Live meting
