@@ -177,6 +177,14 @@ For this confirmed profile, the software uses these device limits:
 
 If a device can be read but its write profile has not been confirmed, KP184control will not start a load test for safety reasons.
 
+### Supported models and revisions
+
+**KP184control v2.1.0 is currently hardware-validated for the KUNKIN KP184 with model ID `0x0730`.**
+
+Other KUNKIN models or revisions may use related communication, but they have not been hardware-validated in this release and are therefore **not officially supported**.
+
+An unknown device profile may be detected or read where possible, but KP184control will not enable the load until the write profile has been confirmed as safe.
+
 ---
 
 ## 7. Live measurement
