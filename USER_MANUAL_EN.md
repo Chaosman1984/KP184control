@@ -68,6 +68,19 @@ Example:
 
 KP184control uses this value together with the selected chemistry to estimate the series configuration.
 
+> [!WARNING]
+> **Enter the correct maximum full-charge voltage of the battery pack.**
+>
+> KP184control uses this value to determine the number of cells in series, and that series configuration is then used to calculate the **automatic Safe Cutoff Voltage**.
+>
+> If the maximum battery voltage is entered incorrectly, KP184control may determine the wrong series configuration and calculate an incorrect cutoff voltage. If the calculated cutoff is too low, the battery can be discharged below the recommended safe cell voltage. This may cause **excessive cell discharge, accelerated degradation, or permanent cell damage**.
+>
+> If you are unsure of the correct maximum voltage, check the battery specifications, charger output voltage, or manufacturer documentation before starting a discharge test.
+>
+> Example for Li-ion:
+>
+> `67.200 V ÷ 4.200 V = 16 cells in series → 16S`
+
 ---
 
 ## 3. Automatic cell configuration
