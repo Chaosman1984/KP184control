@@ -68,6 +68,19 @@ Voorbeeld:
 
 KP184control gebruikt deze waarde samen met de gekozen chemie om de serieconfiguratie te schatten.
 
+> [!WARNING]
+> **Vul altijd de juiste maximale volledig-geladen accuspanning van het accupakket in.**
+>
+> KP184control gebruikt deze waarde om het aantal cellen in serie te bepalen. Deze serieconfiguratie wordt vervolgens gebruikt om de **automatische veilige stopspanning (Safe Cutoff Voltage)** te berekenen.
+>
+> Als de maximale accuspanning verkeerd wordt ingevoerd, kan KP184control een verkeerde serieconfiguratie bepalen en daardoor een onjuiste stopspanning berekenen. Als de berekende cutoff te laag is, kan de accu verder worden ontladen dan de aanbevolen veilige celspanning. Dit kan leiden tot **overmatige ontlading van de cellen, versnelde slijtage of permanente celschade**.
+>
+> Weet je de juiste maximale spanning niet zeker, controleer dan vóór het starten van een ontlaadtest de specificaties van de accu, de uitgangsspanning van de lader of de documentatie van de fabrikant.
+>
+> Voorbeeld voor Li-ion:
+>
+> `67.200 V ÷ 4.200 V = 16 cellen in serie → 16S`
+
 ---
 
 ## 3. Automatische celconfiguratie
