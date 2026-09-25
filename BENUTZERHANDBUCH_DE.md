@@ -68,6 +68,19 @@ Beispiel:
 
 KP184control verwendet diesen Wert zusammen mit der gewählten Chemie, um die Reihenkonfiguration zu schätzen.
 
+> [!WARNING]
+> **Geben Sie immer die korrekte maximale Spannung des vollständig geladenen Akkupacks ein.**
+>
+> KP184control verwendet diesen Wert, um die Anzahl der in Reihe geschalteten Zellen zu bestimmen. Diese Reihenkonfiguration wird anschließend zur Berechnung der **automatischen sicheren Abschaltspannung (Safe Cutoff Voltage)** verwendet.
+>
+> Wird die maximale Batteriespannung falsch eingegeben, kann KP184control eine falsche Reihenkonfiguration bestimmen und dadurch eine falsche Abschaltspannung berechnen. Ist die berechnete Abschaltspannung zu niedrig, kann die Batterie unter die empfohlene sichere Zellspannung entladen werden. Dies kann zu **übermäßiger Zellentladung, beschleunigter Alterung oder dauerhaften Zellschäden** führen.
+>
+> Wenn Sie sich bei der korrekten Maximalspannung nicht sicher sind, prüfen Sie vor Beginn eines Entladetests die Batteriespezifikationen, die Ausgangsspannung des Ladegeräts oder die Dokumentation des Herstellers.
+>
+> Beispiel für Li-ion:
+>
+> `67.200 V ÷ 4.200 V = 16 Zellen in Reihe → 16S`
+
 ---
 
 ## 3. Automatische Zellkonfiguration
