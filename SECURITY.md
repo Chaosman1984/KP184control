@@ -2,7 +2,7 @@
 
 ## Supported version
 
-Security fixes are considered for the current release line, currently **2.1.x**.
+Security fixes are considered for the current release line, currently **2.2.x**.
 
 ## Reporting a vulnerability
 
@@ -14,6 +14,6 @@ Useful details include:
 - Windows version;
 - KP184 model/firmware details if relevant;
 - steps required to reproduce the issue;
-- whether the issue can cause unintended load activation, incorrect current/power settings, corrupted logs, or unsafe test behaviour.
+- whether the issue can cause unintended load activation, incorrect current/power settings, unsafe reconnect behaviour, incorrect safety checks, corrupted logs, or unsafe test behaviour.
 
 Do not include private keys, passwords, personal data, or other secrets in a report.
