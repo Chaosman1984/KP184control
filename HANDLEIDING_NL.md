@@ -1,9 +1,9 @@
-# KP184control v2.1.0 — Uitgebreide handleiding
+# KP184control v2.2.0 — Uitgebreide handleiding
 
-Deze handleiding beschrijft de functies die in **KP184control v2.1.0** daadwerkelijk beschikbaar zijn.
+Deze handleiding beschrijft de functies die in **KP184control v2.2.0** daadwerkelijk beschikbaar zijn.
 
 > **Ondersteunde belastingmodi:** CC, CP/CW en CR  
-> **CV:** zichtbaar in de interface, maar bewust uitgeschakeld in v2.1.0  
+> **CV:** zichtbaar in de interface, maar bewust uitgeschakeld in v2.2.0  
 > **Getest apparaatprofiel:** KUNKIN KP184, model-ID `0x0730`
 
 ---
@@ -112,7 +112,7 @@ De software toont dan ongeveer:
 
 ### Belangrijk
 
-In v2.1.0 wordt de **standaard veilige stopspanning niet uit de ingestelde stroom berekend**.
+In v2.2.0 wordt de **standaard veilige stopspanning niet uit de ingestelde stroom berekend**.
 
 De automatische stopspanning wordt berekend uit:
 
@@ -192,7 +192,7 @@ Als een apparaat wel kan worden uitgelezen maar het schrijfprofiel niet bevestig
 
 ### Ondersteunde modellen en revisies
 
-**KP184control v2.1.0 is momenteel hardwarematig gevalideerd voor de KUNKIN KP184 met model-ID `0x0730`.**
+**KP184control v2.2.0 is momenteel hardwarematig gevalideerd voor de KUNKIN KP184 met model-ID `0x0730`.**
 
 Andere KUNKIN-modellen of revisies kunnen mogelijk vergelijkbare communicatie gebruiken, maar zijn in deze release niet hardwarematig gevalideerd en daarom **niet officieel ondersteund**.
 
@@ -248,7 +248,7 @@ De software berekent in zo'n geval ook ongeveer welke stroom bij de actuele span
 
 ## 9. CC soft-start
 
-Soft-start staat in v2.1.0 standaard aan.
+Soft-start staat in v2.2.0 standaard aan.
 
 De soft-start:
 
@@ -329,7 +329,7 @@ De geschreven CR-instelling wordt vóór LOAD ON ook teruggelezen en gecontrolee
 
 ## 12. CV — Constant Voltage
 
-De CV-tab is zichtbaar, maar **CV is bewust uitgeschakeld in v2.1.0**.
+De CV-tab is zichtbaar, maar **CV is bewust uitgeschakeld in v2.2.0**.
 
 Tijdens ontwikkeling is zowel de native CV-instelling als softwarematige current-limited CV onderzocht. De experimentele regeling werd niet stabiel genoeg bevonden voor opname in de release.
 
@@ -448,7 +448,7 @@ Na een **automatische cutoff** kan KP184control, als voldoende ontlaadgegevens b
 
 De software gebruikt daarvoor het laatste deel van de werkelijk gemeten ontlaadcurve.
 
-Een schatting wordt alleen gemaakt als de curve voldoende bruikbaar is. In v2.1.0 vereist dit onder andere:
+Een schatting wordt alleen gemaakt als de curve voldoende bruikbaar is. In v2.2.0 vereist dit onder andere:
 
 - minimaal 30 meetpunten;
 - minimaal 0.5 Ah gemeten capaciteit;
@@ -597,7 +597,7 @@ De gebruiker blijft daarom verantwoordelijk voor veilige testinstellingen en toe
 
 ---
 
-## 25. Grenzen van v2.1.0
+## 25. Grenzen van v2.2.0
 
 Niet actief in deze release:
 
@@ -605,10 +605,36 @@ Niet actief in deze release:
 - dynamische/pulslast;
 - interne-weerstandtest;
 - OCP-test;
-- native slew-rate configuratie;
+
 - programmeerbare belastingprofielen.
 
 Deze functies kunnen in toekomstige versies worden onderzocht.
+
+## 26. Nieuwe functies in v2.2.0
+
+v2.2.0 voegt onder andere toe:
+
+- Compatibility Check met veilige read/write-bevestiging;
+- extra automatische stopvoorwaarden op Ah, Wh en testduur;
+- uitgebreide testsamenvatting en stabiele gemiddelden;
+- native slew-rate uitlezen en instellen;
+- communicatie-watchdog met pauze/herverbinden;
+- detectie van onverwachte stroomuitval;
+- testnaam en notitie;
+- onthouden van veilige instellingen;
+- runtime stroom-/vermogensbewaking;
+- pre-start veiligheidscontrole;
+- automatische grafiekschaling;
+- uitgebreidere CSV-logging;
+- een eentalig PDF-testrapport dat automatisch de gekozen interface-taal volgt.
+
+Software-soft-start blijft standaard ingeschakeld en is bewust niet vervangen door de native slew-rate.
+
+## 27. PDF testrapport
+
+Na een voltooide test kan KP184control een technisch PDF-rapport opslaan. Het rapport bevat testinformatie, accu-instellingen, meetresultaten, compatibiliteits- en veiligheidsinformatie, vier grafieken en een conclusie. Het rapport wordt automatisch in Nederlands, Engels of Duits gegenereerd op basis van de actieve interfacetaal.
+
+Battery Health wordt alleen als gemeten percentage weergegeven wanneer de test daadwerkelijk de automatische cutoff bereikt.
 
 ---
 
