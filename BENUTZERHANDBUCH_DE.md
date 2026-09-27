@@ -1,9 +1,9 @@
-# KP184control v2.1.0 — Ausführliches Benutzerhandbuch
+# KP184control v2.2.0 — Ausführliches Benutzerhandbuch
 
-Dieses Handbuch beschreibt die Funktionen, die in **KP184control v2.1.0** tatsächlich verfügbar sind.
+Dieses Handbuch beschreibt die Funktionen, die in **KP184control v2.2.0** tatsächlich verfügbar sind.
 
 > **Unterstützte Lastmodi:** CC, CP/CW und CR  
-> **CV:** in der Oberfläche sichtbar, in v2.1.0 jedoch bewusst deaktiviert  
+> **CV:** in der Oberfläche sichtbar, in v2.2.0 jedoch bewusst deaktiviert  
 > **Getestetes Geräteprofil:** KUNKIN KP184, Modell-ID `0x0730`
 
 ---
@@ -112,7 +112,7 @@ Die Software zeigt dann ungefähr:
 
 ### Wichtig
 
-In v2.1.0 wird die **sichere Standard-Abschaltspannung nicht aus dem eingestellten Strom berechnet**.
+In v2.2.0 wird die **sichere Standard-Abschaltspannung nicht aus dem eingestellten Strom berechnet**.
 
 Die automatische Abschaltspannung wird berechnet aus:
 
@@ -192,7 +192,7 @@ Wenn ein Gerät zwar gelesen werden kann, das Schreibprofil jedoch nicht bestät
 
 ### Unterstützte Modelle und Revisionen
 
-**KP184control v2.1.0 ist derzeit hardwareseitig für den KUNKIN KP184 mit der Modell-ID `0x0730` validiert.**
+**KP184control v2.2.0 ist derzeit hardwareseitig für den KUNKIN KP184 mit der Modell-ID `0x0730` validiert.**
 
 Andere KUNKIN-Modelle oder Revisionen können möglicherweise eine ähnliche Kommunikation verwenden, wurden in dieser Version jedoch nicht hardwareseitig validiert und werden daher **nicht offiziell unterstützt**.
 
@@ -248,7 +248,7 @@ In diesem Fall berechnet die Software außerdem ungefähr, welcher Strom bei der
 
 ## 9. CC Soft-Start
 
-Soft-Start ist in v2.1.0 standardmäßig aktiviert.
+Soft-Start ist in v2.2.0 standardmäßig aktiviert.
 
 Der Soft-Start:
 
@@ -329,7 +329,7 @@ Die geschriebene CR-Einstellung wird vor LOAD ON außerdem zurückgelesen und ü
 
 ## 12. CV — Konstantspannung
 
-Der CV-Reiter ist sichtbar, aber **CV ist in v2.1.0 bewusst deaktiviert**.
+Der CV-Reiter ist sichtbar, aber **CV ist in v2.2.0 bewusst deaktiviert**.
 
 Während der Entwicklung wurden sowohl die native CV-Einstellung als auch eine softwarebasierte strombegrenzte CV-Regelung untersucht. Die experimentelle Regelung wurde für eine Veröffentlichung als nicht stabil genug eingestuft.
 
@@ -448,7 +448,7 @@ Nach einer **automatischen Abschaltung** kann KP184control, wenn genügend Entla
 
 Dafür verwendet die Software den letzten Teil der tatsächlich gemessenen Entladekurve.
 
-Eine Schätzung wird nur erstellt, wenn die Kurve ausreichend brauchbar ist. In v2.1.0 erfordert dies unter anderem:
+Eine Schätzung wird nur erstellt, wenn die Kurve ausreichend brauchbar ist. In v2.2.0 erfordert dies unter anderem:
 
 - mindestens 30 Messpunkte;
 - mindestens 0.5 Ah gemessene Kapazität;
@@ -597,7 +597,7 @@ Der Benutzer bleibt daher für sichere Testeinstellungen und Überwachung verant
 
 ---
 
-## 25. Grenzen von v2.1.0
+## 25. Grenzen von v2.2.0
 
 In dieser Version nicht aktiv:
 
@@ -605,10 +605,36 @@ In dieser Version nicht aktiv:
 - dynamische/Pulslast;
 - Innenwiderstandstest;
 - OCP-Test;
-- native Slew-Rate-Konfiguration;
+
 - programmierbare Lastprofile.
 
 Diese Funktionen können in zukünftigen Versionen untersucht werden.
+
+## 26. Neue Funktionen in v2.2.0
+
+v2.2.0 fügt unter anderem hinzu:
+
+- Compatibility Check mit sicherer Read/Write-Bestätigung;
+- zusätzliche automatische Stoppbedingungen für Ah, Wh und Testdauer;
+- erweiterte Testzusammenfassung und stabile Durchschnittswerte;
+- native Slew-Rate lesen und schreiben;
+- Kommunikations-Watchdog mit Pause/Wiederverbindung;
+- Erkennung unerwarteten Stromausfalls;
+- Testname und Notiz;
+- Speicherung sicherer Einstellungen;
+- Laufzeitüberwachung von Strom und Leistung;
+- Sicherheitsprüfung vor dem Start;
+- automatische Diagrammskalierung;
+- erweiterte CSV-Protokollierung;
+- einen einseitigen PDF-Testbericht, der automatisch der gewählten Oberflächensprache folgt.
+
+Der Software-Softstart bleibt standardmäßig aktiviert und wird bewusst nicht durch die native Slew-Rate ersetzt.
+
+## 27. PDF-Testbericht
+
+Nach einem abgeschlossenen Test kann KP184control einen technischen PDF-Bericht speichern. Der Bericht enthält Testinformationen, Akkueinstellungen, Messwerte, Kompatibilitäts- und Sicherheitsinformationen, vier Diagramme und ein Fazit. Der Bericht wird automatisch auf Niederländisch, Englisch oder Deutsch entsprechend der aktiven Oberflächensprache erstellt.
+
+Battery Health wird nur dann als gemessener Prozentwert angezeigt, wenn der Test tatsächlich die automatische Abschaltung erreicht.
 
 ---
 
