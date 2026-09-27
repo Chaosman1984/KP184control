@@ -1,9 +1,9 @@
-# KP184control v2.1.0 — Complete User Manual
+# KP184control v2.2.0 — Complete User Manual
 
-This manual describes the functions that are actually available in **KP184control v2.1.0**.
+This manual describes the functions that are actually available in **KP184control v2.2.0**.
 
 > **Supported load modes:** CC, CP/CW and CR  
-> **CV:** visible in the interface, but intentionally disabled in v2.1.0  
+> **CV:** visible in the interface, but intentionally disabled in v2.2.0  
 > **Tested device profile:** KUNKIN KP184, model ID `0x0730`
 
 ---
@@ -112,7 +112,7 @@ The software then shows approximately:
 
 ### Important
 
-In v2.1.0 the **default safe cutoff voltage is not calculated from the configured current**.
+In v2.2.0 the **default safe cutoff voltage is not calculated from the configured current**.
 
 The automatic cutoff voltage is calculated from:
 
@@ -192,7 +192,7 @@ If a device can be read but its write profile has not been confirmed, KP184contr
 
 ### Supported models and revisions
 
-**KP184control v2.1.0 is currently hardware-validated for the KUNKIN KP184 with model ID `0x0730`.**
+**KP184control v2.2.0 is currently hardware-validated for the KUNKIN KP184 with model ID `0x0730`.**
 
 Other KUNKIN models or revisions may use related communication, but they have not been hardware-validated in this release and are therefore **not officially supported**.
 
@@ -248,7 +248,7 @@ In such a case, the software also calculates approximately what current would st
 
 ## 9. CC soft-start
 
-Soft-start is enabled by default in v2.1.0.
+Soft-start is enabled by default in v2.2.0.
 
 The soft-start:
 
@@ -329,7 +329,7 @@ The written CR setting is also read back and verified before LOAD ON.
 
 ## 12. CV — Constant Voltage
 
-The CV tab is visible, but **CV is intentionally disabled in v2.1.0**.
+The CV tab is visible, but **CV is intentionally disabled in v2.2.0**.
 
 During development, both the native CV setting and software-based current-limited CV were investigated. The experimental control was not considered stable enough for inclusion in the release.
 
@@ -448,7 +448,7 @@ After an **automatic cutoff**, KP184control can, if enough discharge data is ava
 
 The software uses the final part of the actually measured discharge curve for this.
 
-An estimate is only made if the curve is sufficiently usable. In v2.1.0 this requires, among other things:
+An estimate is only made if the curve is sufficiently usable. In v2.2.0 this requires, among other things:
 
 - at least 30 measurement points;
 - at least 0.5 Ah measured capacity;
@@ -597,7 +597,7 @@ The user therefore remains responsible for safe test settings and supervision.
 
 ---
 
-## 25. Limits of v2.1.0
+## 25. Limits of v2.2.0
 
 Not active in this release:
 
@@ -605,10 +605,36 @@ Not active in this release:
 - dynamic/pulse load;
 - internal-resistance test;
 - OCP test;
-- native slew-rate configuration;
+
 - programmable load profiles.
 
 These functions may be investigated in future versions.
+
+## 26. New features in v2.2.0
+
+v2.2.0 adds, among other things:
+
+- Compatibility Check with safe read/write confirmation;
+- additional automatic stop conditions for Ah, Wh and test duration;
+- extended test summary and stable-load averages;
+- native slew-rate read/write;
+- communication watchdog with pause/reconnect;
+- unexpected current-loss detection;
+- test name and note;
+- remembered safe settings;
+- runtime current/power monitoring;
+- pre-start safety check;
+- automatic graph scaling;
+- expanded CSV logging;
+- a single-page PDF test report that automatically follows the selected interface language.
+
+Software soft-start remains enabled by default and is intentionally not replaced by native slew-rate control.
+
+## 27. PDF test report
+
+After a completed test, KP184control can save a technical PDF report containing test information, battery settings, measured results, compatibility and safety information, four graphs and a conclusion. The report is generated automatically in Dutch, English or German according to the active interface language.
+
+Battery Health is shown as a measured percentage only when the test actually reaches the automatic cutoff.
 
 ---
 
