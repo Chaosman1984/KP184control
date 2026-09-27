@@ -4,7 +4,7 @@ Copyright © 2026 Richard Uilenberg. All rights reserved.
 
 KP184control is proprietary software. The source code is not open source.
 
-Richard Uilenberg is the copyright holder of KP184control v2.1.0.
+Richard Uilenberg is the copyright holder of KP184control v2.2.0.
 
 PERMITTED USE
 You may download, install, and use an unmodified copy of KP184control for personal use and internal use within your own organization, free of charge, unless a separate written agreement states otherwise. You may make reasonable backup copies for your own use.
@@ -28,4 +28,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 To the maximum extent permitted by law, the copyright holder is not liable for damage, data loss, equipment damage, battery damage, injury, or other loss arising from use or inability to use the software.
 
 KP184control
-Version 2.1.0 — 2026
+Version 2.2.0 — 2026
