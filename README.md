@@ -9,7 +9,7 @@ KP184control is a Windows desktop application for controlling and logging batter
 
 ## Screenshot
 
-![KP184control interface](kp184control-v2.1.png.png)
+![KP184control v2.2.0](kp184control-v2.2.webp)
 
 ## Documentation
 
