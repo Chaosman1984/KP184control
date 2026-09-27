@@ -2,15 +2,10 @@
 
 KP184control is a Windows desktop application for controlling and logging battery discharge tests with the **KUNKIN KP184 electronic load**.
 
-> **Current release:** v2.1.0  
+> **Current release:** v2.2.0  
 > **Interface languages:** English • Deutsch • Nederlands  
-> **Screenshot below:** Dutch interface; the language can be changed in the application.  
 > **Source code:** proprietary / not publicly distributed.  
 > **Copyright:** © 2026 Richard Uilenberg. All rights reserved.
-
-## Screenshot
-
-![KP184control v2.1](kp184control-v2.1.png.png)
 
 ## Documentation
 
@@ -20,49 +15,42 @@ KP184control is a Windows desktop application for controlling and logging batter
 
 ## Device compatibility
 
-**KP184control v2.1.0 is currently validated for the KUNKIN KP184 with model ID `0x0730`.** Other KUNKIN revisions or models may use related communication, but they have not been hardware-validated and are **not officially supported** in this release.
+**KP184control v2.2.0 is hardware-validated for the KUNKIN KP184 with model ID `0x0730`.**
 
-Unknown device profiles may be detected/read where communication is possible, but KP184control will not enable the load unless the write profile has been confirmed as safe.
+The application performs a compatibility/read-write check when connecting. Unknown device profiles may be read where possible, but KP184control will not enable the load unless a safe write profile has been confirmed.
 
-## Features in v2.1.0
+## Main features
 
-- Constant Current (**CC**) testing.
-- CC soft-start enabled by default to reduce abrupt load application.
-- Constant Power (**CP/CW**) testing.
-- Constant Resistance (**CR**) testing.
-- Live voltage, current and power display.
-- Capacity (Ah) and energy (Wh) measurement.
-- CSV test logging.
-- Discharge-curve graphing and battery-capacity estimation.
-- Automatic KP184 connection/profile detection used by the application.
-- Dutch, English and German UI support.
+- Constant Current (**CC**) with software soft-start enabled by default.
+- Constant Power (**CP/CW**).
+- Constant Resistance (**CR**).
+- Automatic KP184 communication/profile detection and compatibility verification.
+- Live voltage, current and power; Ah and Wh measurement.
+- Automatic cutoff plus optional Ah, Wh and duration stop conditions.
+- Communication watchdog and safe reconnect/pause workflow.
+- Unexpected current-loss detection.
+- Native KP184 slew-rate read/write.
+- Runtime current/power watchdog and pre-start safety checks.
+- Automatic graph scaling.
+- Extended CSV logging.
+- Battery Health and remaining-capacity estimation after a valid automatic cutoff.
+- Single-page PDF test report with real test graphs.
+- Dutch, English and German UI/report support.
 
 ### CV status
 
-Constant Voltage (**CV**) is intentionally **not enabled in v2.1.0**. Experimental current-limited CV control was not considered sufficiently stable for release.
+Constant Voltage (**CV**) is intentionally **not enabled in v2.2.0**.
 
 ## Download
 
-Download KP184control from the **Releases** section of this GitHub repository. For each release, download:
+For v2.2.0 download:
 
-- `KP184control-v2.1.0-windows.zip`
-- `KP184control-v2.1.0-windows-SHA256.txt`
-
-Compare the SHA-256 checksum if you want to verify that the ZIP has not changed after release.
+- `KP184control-v2.2.0-windows.zip`
+- `KP184control-v2.2.0-windows-SHA256.txt`
 
 ### Requirement
 
-The v2.1.0 package requires **Windows x64** and the **Microsoft .NET 10 Desktop Runtime**.
-
-## Basic use
-
-1. Connect the KP184 to the PC and battery/test setup.
-2. Start KP184control and connect to the detected KP184.
-3. Enter the battery chemistry/capacity/full-charge information.
-4. Select CC, CP or CR.
-5. Choose conservative load settings and a safe cutoff voltage.
-6. Start the test and supervise the hardware.
-7. Use STOP immediately if the battery, BMS, wiring, connectors or load behave unexpectedly.
+Windows x64 with the **Microsoft .NET 10 Desktop Runtime**.
 
 ## Safety
 
@@ -72,8 +60,8 @@ Use correctly rated wiring, connectors and fusing; verify polarity before enabli
 
 ## Source code and license
 
-KP184control is **not open-source software**. The public repository intentionally does not contain the C# source code. The software may be used under the terms in [LICENSE.txt](LICENSE.txt). Redistribution, resale, modified redistribution and claiming the software as your own are not permitted without written permission.
+KP184control is **not open-source software**. The public repository intentionally does not contain the C# source code. The software may be used under the terms in [LICENSE.txt](LICENSE.txt).
 
 ## Bugs and security issues
 
-For normal bugs, use GitHub Issues. For a security issue that should not be public, use GitHub's **Security → Report a vulnerability** / private vulnerability reporting feature when available. See [SECURITY.md](SECURITY.md).
+For normal bugs, use GitHub Issues. For security issues, use GitHub private vulnerability reporting where available. See [SECURITY.md](SECURITY.md).
