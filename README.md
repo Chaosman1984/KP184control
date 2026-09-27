@@ -7,6 +7,10 @@ KP184control is a Windows desktop application for controlling and logging batter
 > **Source code:** proprietary / not publicly distributed.  
 > **Copyright:** © 2026 Richard Uilenberg. All rights reserved.
 
+## Screenshot
+
+![KP184control interface](kp184control-v2.1.png.png)
+
 ## Documentation
 
 - [Nederlandse handleiding](HANDLEIDING_NL.md)
