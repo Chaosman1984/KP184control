@@ -1,5 +1,41 @@
 # Changelog
 
+## 2.3.0 — 2026-10-05
+
+### Added
+- Constant Voltage (CV) support for the tested KP184 profile.
+- Extra CV startup-current monitoring and safety warning.
+- Low-current CR warning below approximately 0.15 A expected current.
+- Local test presets.
+- Local test history.
+- Local mobile/web interface for monitoring and control on the same network.
+- Mobile access modes: off, read-only and full control.
+- Remote START/STOP support.
+- Application version metadata in new CSV logs.
+
+### Improved
+- Disconnect/reconnect workflow and manual resume after reconnect.
+- Pre-start safety checks and runtime safety monitoring.
+- Release hardening for Windows and local web access.
+- Documentation for CV, CR low-current behaviour and remote control.
+
+### Tested for this release
+- CC
+- CP/CW
+- CR
+- CV
+- Automatic cutoff
+- USB disconnect/reconnect
+- Manual resume after reconnect
+- Presets
+- Remote START/STOP
+
+### Packaging
+- Windows x64 Release build.
+- Self-contained deployment; separate .NET Desktop Runtime installation is not required.
+- Single-file publish configuration.
+- SHA256 checksum supplied with the release ZIP.
+
 ## 2.2.0 — 2026-09-27
 
 ### Added
