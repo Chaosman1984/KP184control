@@ -1,641 +1,140 @@
-# KP184control v2.2.0 — Complete User Manual
+# KP184control v2.3.0 — User Manual
 
-This manual describes the functions that are actually available in **KP184control v2.2.0**.
+This manual describes the functions available in **KP184control v2.3.0**.
 
-> **Supported load modes:** CC, CP/CW and CR  
-> **CV:** visible in the interface, but intentionally disabled in v2.2.0  
-> **Tested device profile:** KUNKIN KP184, model ID `0x0730`
+> **Supported load modes:** CC, CP/CW, CR and CV  
+> **Validated device profile:** KUNKIN KP184, model ID `0x0730`  
+> **Windows release:** x64, self-contained
 
----
+## 1. Purpose
 
-## 1. Purpose of KP184control
+KP184control controls a KUNKIN KP184 electronic load for running, monitoring and recording battery discharge tests. It displays live voltage, current and power, calculates Ah and Wh, records graphs and CSV logs, and can stop tests automatically.
 
-KP184control controls a KUNKIN KP184 electronic load and is intended for running, monitoring and recording battery discharge tests.
+## 2. Battery data and safe cutoff
 
-The software can, among other things:
-
-- automatically recognize the KP184;
-- show live voltage, current and power;
-- discharge in CC, CP/CW and CR mode;
-- calculate Ah and Wh;
-- save and graph the discharge curve;
-- automatically stop at a configured cutoff voltage;
-- calculate a safe default cutoff voltage based on battery chemistry and maximum battery voltage;
-- check hardware limits before a test is started;
-- automatically save test results as CSV;
-- compare measured capacity with factory capacity;
-- estimate remaining capacity after a usable automatic cutoff.
-
----
-
-## 2. Battery data
-
-### Battery chemistry
-
-Available choices:
-
-- Li-ion (NMC/NCA)
-- LiPo
-- LiFePO4
-- NiMH
-
-The selected chemistry is used for:
-
-1. estimating the number of cells in series;
-2. automatically calculating the safe default cutoff voltage;
-3. later estimating capacity below the configured cutoff.
-
-### Factory capacity
-
-Enter the original nominal battery capacity in Ah, for example:
-
-`30.000 Ah`
-
-This field is not required for the KP184 to operate as a load, but it is used for:
-
-- percentage of factory capacity;
-- progress bar;
-- Battery Health display;
-- estimated total capacity after automatic cutoff.
-
-### Maximum battery voltage
-
-Enter the voltage of the fully charged battery.
-
-Example:
-
-`67.200 V`
-
-KP184control uses this value together with the selected chemistry to estimate the series configuration.
+Select the battery chemistry and enter the correct fully charged maximum pack voltage. KP184control uses this information to estimate the series cell configuration and a default safe cutoff voltage.
 
 > [!WARNING]
-> **Enter the correct maximum full-charge voltage of the battery pack.**
->
-> KP184control uses this value to determine the number of cells in series, and that series configuration is then used to calculate the **automatic Safe Cutoff Voltage**.
->
-> If the maximum battery voltage is entered incorrectly, KP184control may determine the wrong series configuration and calculate an incorrect cutoff voltage. If the calculated cutoff is too low, the battery can be discharged below the recommended safe cell voltage. This may cause **excessive cell discharge, accelerated degradation, or permanent cell damage**.
->
-> If you are unsure of the correct maximum voltage, check the battery specifications, charger output voltage, or manufacturer documentation before starting a discharge test.
->
-> Example for Li-ion:
->
-> `67.200 V ÷ 4.200 V = 16 cells in series → 16S`
+> Always enter the correct maximum battery voltage. An incorrect value can produce an incorrect series-cell estimate and therefore an incorrect automatic cutoff.
 
----
+Supported chemistries include Li-ion (NMC/NCA), LiPo, LiFePO4 and NiMH. Factory capacity in Ah is used for progress, capacity comparison and Battery Health.
 
-## 3. Automatic cell configuration
+## 3. Connecting to the KP184
 
-The software divides the entered maximum battery voltage by the typical fully charged cell voltage and rounds the result to a whole number of cells.
+Select the correct COM port. KP184control automatically detects supported communication settings and verifies the device profile. The hardware-validated profile is the KUNKIN KP184 with model ID `0x0730`.
 
-Values used:
-
-| Chemistry | Fully charged per cell |
-|---|---:|
-| Li-ion (NMC/NCA) | 4.20 V |
-| LiPo | 4.20 V |
-| LiFePO4 | 3.65 V |
-| NiMH | 1.45 V |
-
-Example:
-
-- chemistry: Li-ion
-- maximum battery voltage: 67.2 V
-- 67.2 / 4.20 = 16
-
-The software then shows approximately:
-
-`Configuration: 16S | 4.200 V/cell`
-
----
-
-## 4. Automatic safe cutoff voltage
-
-### Important
-
-In v2.2.0 the **default safe cutoff voltage is not calculated from the configured current**.
-
-The automatic cutoff voltage is calculated from:
-
-- battery chemistry;
-- maximum battery voltage;
-- the derived number of cells in series.
-
-The configured current is checked separately against the current and power limits of the KP184.
-
-### Default cutoff per cell
-
-| Chemistry | Automatic cutoff per cell |
-|---|---:|
-| Li-ion (NMC/NCA) | 3.10 V |
-| LiPo | 3.20 V |
-| LiFePO4 | 3.00 V |
-| NiMH | 1.00 V |
-
-Example for a 16S Li-ion battery:
-
-`16 × 3.10 V = 49.6 V`
-
-The software then automatically enters approximately **49.600 V** as the cutoff voltage.
-
-The user can adjust the cutoff voltage manually afterwards.
-
----
-
-## 5. Automatic stop at cutoff
-
-The option **Automatically stop at cutoff** is enabled by default.
-
-During an active test:
-
-1. KP184control waits 2 seconds before cutoff protection becomes active;
-2. battery voltage is checked about once per second;
-3. voltage must be at or below the configured cutoff for 3 consecutive readings;
-4. LOAD OFF is then sent and the test is stopped.
-
-This prevents one very short voltage dip from immediately ending the test.
-
-If automatic cutoff is disabled manually, the software first shows a warning.
-
----
-
-## 6. Connecting to the KP184
-
-### COM port and address
-
-Select the COM port to which the KP184 is connected. The Modbus address is configurable; address 1 is used by default.
-
-### Automatic communication detection
-
-KP184control automatically tries multiple baud rates:
-
-- 9600
-- 115200
-- 57600
-- 38400
-- 19200
-- 4800
-- 2400
-
-The software also tests both CRC byte orders used by the device.
-
-### Model detection
-
-Model ID `0x0730` is recognized as a KP184.
-
-For this confirmed profile, the software uses these device limits:
+For this profile the known device limits are applied:
 
 - maximum 150 V;
 - maximum 40 A;
 - maximum 400 W.
 
-If a device can be read but its write profile has not been confirmed, KP184control will not start a load test for safety reasons.
+An unknown profile may be read where possible, but LOAD is not enabled until a safe write profile has been confirmed.
 
-### Supported models and revisions
+## 4. Load modes
 
-**KP184control v2.2.0 is currently hardware-validated for the KUNKIN KP184 with model ID `0x0730`.**
+### CC — Constant Current
 
-Other KUNKIN models or revisions may use related communication, but they have not been hardware-validated in this release and are therefore **not officially supported**.
+The KP184 draws a set constant current. Software soft-start is enabled by default and ramps the current up gradually.
 
-An unknown device profile may be detected or read where possible, but KP184control will not enable the load until the write profile has been confirmed as safe.
+### CP/CW — Constant Power
 
----
+The KP184 attempts to draw constant power. Because `I = P / V`, current can rise as battery voltage falls. KP184control therefore also checks the expected current at the selected cutoff voltage.
 
-## 7. Live measurement
+### CR — Constant Resistance
 
-After connection, the software continuously shows:
+The KP184 behaves as a set resistance. For the validated profile, CR scaling has been hardware-confirmed at 0.1 Ω per register step.
 
-- voltage in V;
-- current in A;
-- power in W.
+When the **expected CR current is below approximately 0.15 A**, v2.3.0 shows a warning because practical regulation accuracy can decrease at very low current.
 
-The measurement is updated about once per second.
+### CV — Constant Voltage
 
-During a test, the same values are used for:
+CV is **enabled in v2.3.0** for the validated KP184 profile.
 
-- capacity in Ah;
-- energy in Wh;
-- CSV logging;
-- graphs;
-- cutoff monitoring.
+Native CV has no separately configurable hardware current limit. KP184control therefore performs extra checks and monitors the startup phase at a higher rate. If excessive startup current is measured, LOAD is switched off.
 
----
+> [!WARNING]
+> Software monitoring is an additional safety layer and does not replace external or hardware current limiting where the test requires it.
 
-## 8. CC — Constant Current
+## 5. START and safety checks
 
-In CC mode, the KP184 attempts to draw a constant discharge current.
+Before LOAD ON, KP184control checks among other things:
 
-You configure:
+- that a valid live voltage is available;
+- that the detected KP184 profile permits safe writes;
+- voltage, current and power limits;
+- expected load for the selected mode;
+- entered battery and cutoff data.
 
-- discharge current in amperes;
-- cutoff voltage;
-- soft-start on/off.
+During an active test, known current and power limits are monitored. Warnings are shown before a confirmed limit violation results in LOAD OFF.
 
-### Checks before START
+## 6. Automatic stopping
 
-KP184control checks, among other things:
+Automatic cutoff is enabled by default. A test can also stop at:
 
-- current must be greater than 0 A;
-- configured current must not exceed the model limit;
-- `voltage × current` must not exceed the maximum KP184 power.
+- maximum test duration;
+- maximum Ah;
+- maximum Wh.
 
-Example:
+The stop reason is recorded in results and CSV data.
 
-At 66 V and 10 A, about 660 W would be requested. Because the confirmed KP184 profile is limited to 400 W, the test will not start.
+## 7. USB loss and resume
 
-In such a case, the software also calculates approximately what current would still remain within 400 W at the current voltage.
+After multiple consecutive communication failures, an active test is paused and KP184control attempts to reconnect automatically. A test is **never resumed automatically**.
 
----
+After a successful reconnect, the software first confirms a safe LOAD OFF state. The user can then resume the test manually.
 
-## 9. CC soft-start
+## 8. Presets and history
 
-Soft-start is enabled by default in v2.2.0.
+v2.3.0 supports local test presets for reusable test settings. A compact local history of completed tests is also maintained. Full measurement samples remain stored in the CSV files.
 
-The soft-start:
+## 9. CSV, graphs and reports
 
-1. first sets a maximum of 0.100 A;
-2. switches LOAD ON;
-3. then increases the CC current by 0.100 A;
-4. waits 100 ms between each step;
-5. stops increasing when the configured final current has been reached.
+New CSV logs include, among other data:
 
-Example for a 1.000 A target:
+- `APP;Naam;KP184control`
+- `APP;Versie;v2.3.0`
+- device and communication information;
+- safety information;
+- test settings;
+- samples and events;
+- final results and stop reason.
 
-`0.1 → 0.2 → 0.3 → ... → 1.0 A`
+The application displays graphs for measured test data and can generate a PDF test report.
 
-This reduces the abrupt load step when starting a test.
+## 10. Mobile/web interface
 
-Soft-start can be disabled manually. In that case, the selected CC current is set directly before LOAD ON is activated.
+KP184control v2.3.0 includes a local web interface that can be used from a phone or other device on the same network.
 
----
+Available access modes:
 
-## 10. CP/CW — Constant Power
+- **Off** — web access disabled;
+- **Read-only** — monitor without control commands;
+- **Full control** — supported settings and remote START/STOP.
 
-In CP/CW mode, the KP184 attempts to draw constant power.
+Control actions use a local action token. The token can be renewed from Windows; existing mobile pages must then be reloaded before control commands work again.
 
-You configure the desired power in watts.
+The current release is intended for **local-network access**, not as a public internet service.
 
-### Checks before START
+## 11. Installing v2.3.0
 
-KP184control checks:
+Download from GitHub Releases:
 
-- power must be greater than 0 W;
-- power must not exceed the model limit of the KP184;
-- the expected current at the configured cutoff must not exceed the maximum current of the KP184.
+- `KP184control-v2.3.0-windows-x64.zip`
+- `KP184control-v2.3.0-windows-x64-SHA256.txt`
 
-For constant power:
+Extract the ZIP and start `KP184control.exe`.
 
-`I = P / V`
+The Windows x64 release is **self-contained**. A separate Microsoft .NET Desktop Runtime installation is not required for this package.
 
-This means current increases when battery voltage falls.
+The SHA256 file can be used to verify the integrity of the downloaded ZIP.
 
-The software therefore specifically checks approximately what the current will become at the selected cutoff voltage.
+## 12. Safety
 
----
+Battery and electronic-load testing can involve high current, heat, arcing, BMS shutdowns and fire risk. Use appropriately rated wiring, connectors and fuses, verify polarity and limits before START, and do not leave a test unattended.
 
-## 11. CR — Constant Resistance
+KP184control is a tool and does not replace correct electrical protection, supervision or evaluation of battery condition.
 
-In CR mode, the KP184 behaves like a configured resistance.
+## 13. License and source code
 
-You configure the resistance in ohms.
-
-For this mode:
-
-`I = V / R`
-
-and:
-
-`P = V² / R`
-
-### Checks before START
-
-Using the current starting voltage, the software checks:
-
-- expected starting current;
-- expected starting power;
-- maximum 40 A limit;
-- maximum 400 W limit.
-
-If the selected resistance is too low, the test will not start and KP184control indicates approximately the minimum safe resistance for the current voltage.
-
-### Hardware confirmation
-
-For the tested KP184 profile, CR was hardware-confirmed with a scale of:
-
-`0.1 Ω per register step`
-
-The written CR setting is also read back and verified before LOAD ON.
-
----
-
-## 12. CV — Constant Voltage
-
-The CV tab is visible, but **CV is intentionally disabled in v2.2.0**.
-
-During development, both the native CV setting and software-based current-limited CV were investigated. The experimental control was not considered stable enough for inclusion in the release.
-
-START therefore cannot be used in CV mode.
-
----
-
-## 13. Safety checks before a test
-
-In addition to the checks for each load mode, KP184control performs general checks.
-
-### Valid live voltage
-
-A valid live battery voltage must first have been measured.
-
-### KP184 maximum voltage
-
-If measured battery voltage is above the maximum voltage of the confirmed device profile, the test will not start.
-
-### Check of entered maximum battery voltage
-
-If live battery voltage is more than **1.5 V higher** than the maximum battery voltage entered by the user, KP184control blocks the start.
-
-This is intended to detect, for example, an incorrectly entered battery voltage.
-
-### Confirmed write profile
-
-An unknown device profile may be read, but the software will not activate LOAD until the write profile has been confirmed as safe.
-
----
-
-## 14. START TEST
-
-For a valid start:
-
-1. old measurement data is cleared;
-2. Ah and Wh are reset to zero;
-3. a new CSV file is opened;
-4. LOAD is explicitly switched OFF first;
-5. the selected load mode is written to the KP184;
-6. the settings are written;
-7. LOAD is switched on;
-8. settings are locked while the test is active.
-
-The STOP button becomes active and START is temporarily disabled.
-
----
-
-## 15. STOP TEST
-
-When STOP is used:
-
-- LOAD OFF is sent to the KP184;
-- the active test stops;
-- the CSV file is closed;
-- final results are appended to the CSV file;
-- input fields become available again;
-- Battery Health is updated.
-
-The stop reason is recorded, for example:
-
-- manually stopped;
-- automatic cutoff;
-- program closed.
-
----
-
-## 16. Capacity in Ah
-
-During the test, KP184control integrates measured current over time.
-
-In simplified form:
-
-`Ah += current × elapsed time in hours`
-
-This builds the actually measured discharge capacity.
-
----
-
-## 17. Energy in Wh
-
-At every measurement point, the software first calculates:
-
-`power = voltage × current`
-
-Then:
-
-`Wh += power × elapsed time in hours`
-
-This calculates the energy delivered by the battery during the test.
-
----
-
-## 18. Comparison with factory capacity
-
-If factory capacity has been entered, the software shows:
-
-- measured Ah;
-- percentage of factory capacity;
-- graphical progress bar.
-
-Example:
-
-- factory: 30 Ah
-- measured: 26 Ah
-
-then directly measured Battery Health is approximately:
-
-`26 / 30 × 100 = 86.7 %`
-
----
-
-## 19. Estimated remaining capacity
-
-After an **automatic cutoff**, KP184control can, if enough discharge data is available, estimate the capacity that could theoretically remain below the configured cutoff.
-
-The software uses the final part of the actually measured discharge curve for this.
-
-An estimate is only made if the curve is sufficiently usable. In v2.2.0 this requires, among other things:
-
-- at least 30 measurement points;
-- at least 0.5 Ah measured capacity;
-- sufficient voltage change in the curve.
-
-The software then shows, among other things:
-
-- measured capacity;
-- estimated remaining Ah;
-- estimated total capacity;
-- estimated Battery Health.
-
-This value is an **estimate based on the curve**, not directly measured capacity.
-
----
-
-## 20. Graphs
-
-Several graph views are available during a test:
-
-- Voltage (V)
-- Current (A)
-- Capacity (Ah)
-- Energy (Wh)
-- All graphs
-
-The graphs are updated during the test.
-
-The voltage graph also shows the configured cutoff as a reference.
-
----
-
-## 21. CSV logging
-
-For each test, a CSV file is automatically created in:
-
-`Documents\KP184-Logs`
-
-The filename contains date and time.
-
-### Device information
-
-The file contains, among other things:
-
-- model profile;
-- model ID;
-- baud rate;
-- CRC profile;
-- read profile;
-- write profile;
-- maximum device voltage;
-- maximum device current;
-- maximum device power.
-
-### Test settings
-
-Among other things:
-
-- battery chemistry;
-- factory capacity;
-- maximum battery voltage;
-- live starting voltage;
-- estimated series configuration;
-- load mode;
-- CC current, CP power or CR resistance;
-- cutoff voltage.
-
-### Measurement rows
-
-Each measurement row contains:
-
-- timestamp;
-- elapsed seconds;
-- voltage;
-- current;
-- power;
-- capacity;
-- energy.
-
-### Final results
-
-After stopping, the following are added, among other things:
-
-- stop reason;
-- start time;
-- end time;
-- final voltage;
-- measured capacity;
-- measured energy;
-- test duration;
-- measured Battery Health;
-- when available: estimated remaining and total capacity.
-
----
-
-## 22. Languages
-
-The interface supports:
-
-- Nederlands
-- English
-- Deutsch
-
-The selected language is stored locally and restored at the next start.
-
----
-
-## 23. Practical workflow
-
-For a normal battery test:
-
-1. Connect the battery and KP184 correctly.
-2. Connect the KP184 to the PC by USB/serial.
-3. Select the COM port.
-4. Click **Connect**.
-5. Choose the correct battery chemistry.
-6. Enter the factory capacity.
-7. Enter the maximum fully charged battery voltage.
-8. Check the calculated series configuration.
-9. Check the automatically entered cutoff voltage.
-10. Choose CC, CP or CR.
-11. Enter a conservative load setting.
-12. Preferably leave automatic cutoff enabled.
-13. Preferably use soft-start in CC mode.
-14. Click START TEST.
-15. Monitor the battery, wiring, connectors and KP184 during the test.
-16. Use STOP TEST if anything unexpected happens.
-
----
-
-## 24. Important safety note
-
-KP184control helps validate settings, but it cannot determine the safe discharge current of a specific battery.
-
-For example, the software knows the device limits of the confirmed KP184 profile, but does not automatically know:
-
-- maximum continuous current of every battery;
-- maximum current of every BMS;
-- wire gauge;
-- fuse rating;
-- connector limit;
-- cell temperature;
-- battery damage or wear.
-
-The user therefore remains responsible for safe test settings and supervision.
-
----
-
-## 25. Limits of v2.2.0
-
-Not active in this release:
-
-- CV control;
-- dynamic/pulse load;
-- internal-resistance test;
-- OCP test;
-
-- programmable load profiles.
-
-These functions may be investigated in future versions.
-
-## 26. New features in v2.2.0
-
-v2.2.0 adds, among other things:
-
-- Compatibility Check with safe read/write confirmation;
-- additional automatic stop conditions for Ah, Wh and test duration;
-- extended test summary and stable-load averages;
-- native slew-rate read/write;
-- communication watchdog with pause/reconnect;
-- unexpected current-loss detection;
-- test name and note;
-- remembered safe settings;
-- runtime current/power monitoring;
-- pre-start safety check;
-- automatic graph scaling;
-- expanded CSV logging;
-- a single-page PDF test report that automatically follows the selected interface language.
-
-Software soft-start remains enabled by default and is intentionally not replaced by native slew-rate control.
-
-## 27. PDF test report
-
-After a completed test, KP184control can save a technical PDF report containing test information, battery settings, measured results, compatibility and safety information, four graphs and a conclusion. The report is generated automatically in Dutch, English or German according to the active interface language.
-
-Battery Health is shown as a measured percentage only when the test actually reaches the automatic cutoff.
-
----
-
-Copyright © 2026 Richard Uilenberg. All rights reserved.
+KP184control is proprietary software and is not an open-source project. The public repository intentionally does not contain the C# source code. See `LICENSE.txt` for the license terms.
